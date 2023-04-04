@@ -1,17 +1,37 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import MyInput from "../components/forms/MyInput";
+import MySelect from "./MySelect";
+import MyTextArea from "./MyTextArea";
 
 class Checkout extends React.Component {
+    paymentOptions = [
+        { id: "-", name: "----" },
+        { id: "pp", name: "PayPal" },
+        { id: "stripe", name: "Stripe" },
+        { id: "cc", name: "Karta kredytowa"}
+    ];
     constructor(props) {
         super(props);
         this.state = {
             firstname: "",
-            lastname: ""
+            lastname: "",
+            street: "",
+            zip: "",
+            city: "",
+            paymentType: "",
+            comment: "",
+            gift: ""
         };
     }
+
     changeHandler = event => {
-        this.setState({ firstname: event.target.value});
+        let inputName = event.target.name;
+        let inputValue = 
+            event.target.type === "checkbox"
+            ? event.target.checked
+            : event.target.value;
+        this.setState({ [inputName]: inputValue});
     };
     render() {
         return (
@@ -42,6 +62,67 @@ class Checkout extends React.Component {
                                     label="Nazwisko"
                                     className="form-control"
                                     value={this.state.lastname}
+                                    onChange={this.changeHandler}
+                                />
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <MyInput 
+                                    type="text"
+                                    name="street"
+                                    label="Ulica i numer domu"
+                                    className="form-control"
+                                    value={this.state.street}
+                                    onChange={this.changeHandler}                                
+                                />
+                            </Col>
+                            <Col xs={12} md={4}> 
+                                <MyInput 
+                                    type="text"
+                                    name="zip"
+                                    label="Kod pocztowy"
+                                    className="form-control"
+                                    value={this.state.zip}
+                                    onChange={this.changeHandler}
+                                />
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <MyInput 
+                                    type="text"
+                                    name="city"
+                                    label="Miasto"
+                                    className="form-control"
+                                    value={this.state.city}
+                                    onChange={this.changeHandler}
+                                />
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <MySelect 
+                                    name="paymentType"
+                                    label="Rodzaj płatności"
+                                    className="form-control"
+                                    onChange={this.changeHandler}
+                                    value={this.state.paymentType}
+                                    options={this.paymentOptions}
+                                />
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <MyTextArea 
+                                    type="text"
+                                    name="comment"
+                                    label="Komentarze"
+                                    className="form-control"
+                                    value={this.state.comment}
+                                    onChange={this.changeHandler}
+                                />
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <MyInput 
+                                    type="checkbox"
+                                    name="gift"
+                                    label="Zapakować na prezent?"
+                                    className="form=control"
+                                    onChange={this.changeHandler}
+                                    value={this.state.gift}
                                 />
                             </Col>
                         </Row>
@@ -50,8 +131,40 @@ class Checkout extends React.Component {
                 <Row>
                     <Col>
                         <h2>Podane dane:</h2>
-                        Imię: 
-                        {this.state.firstname == "" ? "N/A" : this.state.firstname}
+                        <ul className="list-group">
+                            <li className="list-group-item">
+                                Imię:&nbsp;
+                                {this.state.firstname === "" ? "N/A" : this.state.firstname}
+                            </li>
+                            <li className="list-group-item">
+                                Nazwisko:&nbsp;
+                                {this.state.lastname === "" ? "N/A" : this.state.lastname}
+                            </li>
+                            <li className="list-group-item">
+                                Ulica i numer domu:&nbsp;
+                                {this.state.street === "" ? "N/A" : this.state.street}
+                            </li>
+                            <li className="list-group-item">
+                                Kod pocztowy:&nbsp;
+                                {this.state.zip === "" ? "N/A" : this.state.zip}
+                            </li>
+                            <li className="list-group-item">
+                                Miasto:&nbsp;
+                                {this.state.city === "" ? "N/A" : this.state.city}
+                            </li>
+                            <li className="list-group-item">
+                                Rodzaj płatności:&nbsp;
+                                {this.state.paymentType === "" ? "N/A" : this.state.paymentType}
+                            </li>
+                            <li className="list-group-item">
+                                Dodatkowe komentarze do zamówienia:&nbsp;
+                                {this.state.comment === "" ? "N/A" : this.state.comment}
+                            </li>
+                            <li className="list-group-item">
+                                Zapakować na prezent?:&nbsp;
+                                {this.state.gift ? "Tak" : "Nie"} 
+                            </li>
+                        </ul>
                     </Col>
                 </Row>
             </Container>
