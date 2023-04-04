@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 const MyInput = props => {
-    const { label, type, name, value, className, onChange } = props;
+    const { label, type, name, value, className, onChange, error } = props;
     return (
         <div>
             <label htmlFor={name}>{label}: </label>
@@ -13,6 +13,11 @@ const MyInput = props => {
                 className={className}
                 onChange={onChange}
             />
+            {error && (
+                <small className="alert alert-danger form-text text-muted">
+                    {error}
+                </small>
+            )}
         </div>
         );
     }
@@ -22,7 +27,8 @@ MyInput.propTypes = {
     type: PropTypes.string.isRequired,
     value: PropTypes.string,
     className: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    error: PropTypes.string
 };
 
 export default MyInput;
