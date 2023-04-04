@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Container } from "react-bootstrap"
+import { Row, Col, Container } from "react-bootstrap";
 import MyInput from "../components/forms/MyInput";
 
 class Checkout extends Component {
@@ -20,19 +20,19 @@ class Checkout extends Component {
                         <Row>
                             <Col xs={12} md={4}>
                                 <MyInput
-                                  type="text"
-                                  name="firstname"
-                                  label="Imię"
-                                  className="form-control"
+                                    type="text"
+                                    name="firstname"
+                                    label="Imię"
+                                    className="form-control"
                                 />
                             </Col>
                             <Col xs={12} md={4}>
-                            <MyInput
-                              type="text"
-                              name="lastname"
-                              label="Nazwisko"
-                              className="form-control"
-                            />
+                                <MyInput
+                                    type="text"
+                                    name="lastname"
+                                    label="Nazwisko"
+                                    className="form-control"
+                                />
                             </Col>
                         </Row>
                     </div>
