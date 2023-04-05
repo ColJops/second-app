@@ -4,7 +4,9 @@ const MyInput = props => {
     const { label, type, name, value, className, onChange, error } = props;
     return (
         <div>
-            <label htmlFor={name}>{label}: </label>
+            <label htmlFor={name}>
+                {label}: {type !== "submit" ? ":" : ""}
+            </label>
             <input
                 name={name}
                 id={name}
@@ -22,8 +24,8 @@ const MyInput = props => {
         );
     }
 MyInput.propTypes = {
-    label: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    name: PropTypes.string,
     type: PropTypes.string.isRequired,
     value: PropTypes.string,
     className: PropTypes.string,

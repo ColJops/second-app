@@ -1,8 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Checkout from './pages/Checkout';
+import ReactDOM from 'react-dom/client';
+import reportWebVitals from './reportWebVitals';
+import Checkout from './pages/Checkout'
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
     <link rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -10,5 +12,6 @@ ReactDOM.render(
       crossorigin="anonymous"></link>
     <Checkout />
   </React.StrictMode>,
-  document.getElementById("root")
 );
+
+reportWebVitals();
